@@ -25,7 +25,7 @@ func setupRouter (db storage.Storage, log *slog.Logger, cfg config.ServiceAddres
 		middleware.CorsWithConfig(cfg), 
 		logger.URLFormat(),
 		logger.New(log),
-		logger.RequestIDLoggerMiddleware(log),
+		middleware.RequestIDMiddleware(),
 	)
 	
 	appHandlers := handlers.NewAppHandler(db, log)
